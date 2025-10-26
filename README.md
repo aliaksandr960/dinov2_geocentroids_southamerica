@@ -1,5 +1,13 @@
 # K-Means GeoCentroids for DinoV2
-How closely unsupervised learning can align with human perception.
+How closely self-supervised learning can align with human perception.
+![Screenshot](screenshot.jpg)
+
+# Files
+
+- inference.ipynb - jupyter notebook with inference code
+- centroids_6k.npy - centroids as np array
+- color_map_rgb_6k.npy - centroids ids to rgb colors as np array
+- ./examples - example imagery from OpenAerialMap
 
 # Idea:
 
