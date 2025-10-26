@@ -7,7 +7,7 @@ How closely self-supervised learning can align with human perception.
 - inference.ipynb - jupyter notebook with inference code
 - centroids_6k.npy - centroids as np array
 - color_map_rgb_6k.npy - centroids ids to rgb colors as np array
-- ./examples - example imagery from OpenAerialMap
+- ./examples - three example images grabbed from OpenAerialMap
 
 # Idea:
 
