@@ -9,6 +9,39 @@ How closely self-supervised learning can align with human perception.
 - color_map_rgb_6k.npy - centroids ids to rgb colors as np array
 - ./examples - three example images grabbed from OpenAerialMap
 
+Input files been rescaled and reprojected using GDAL
+```
+gdal_string = """
+rm -f reprojected.tif
+
+echo "Started {n}"
+echo "Path {in_file}"
+
+gdalwarp \
+-t_srs {dst_crs_epsg} \
+-r bilinear \
+-tr {gsd} {gsd} \
+-co COMPRESS=LZW \
+-co BIGTIFF=YES \
+-co TILED=YES \
+{in_file} reprojected.tif
+
+gdal_translate \
+reprojected.tif {out_file} \
+-of COG \
+-co TILED=YES \
+-of COG \
+-co COMPRESS=JPEG \
+-co BIGTIFF=YES \
+-co NUM_THREADS=ALL_CPUS \
+-co OVERVIEWS=IGNORE_EXISTING
+
+echo "Finished {n}" """.format(n=n,
+                               in_file=src_path,
+                               out_file=os.path.join(output_dir,os.path.basename(src_path)),
+                               gsd=output_gsd, dst_crs_epsg=str(dst_crs))
+```
+
 # Idea:
 
 In remote sensing data, there should be fewer features than in all data in the Dino training set, especially for a specific GSD and a specific continent. It should be possible to cluster and represent them as cluster IDs.
